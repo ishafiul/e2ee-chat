@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ant-input .message-box{
+    font-size: 50px !important;
+}
+::-webkit-scrollbar {
+    width: 7px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #939393;
+    border-radius:30px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

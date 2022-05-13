@@ -1,0 +1,19 @@
+textarea {
+    margin:  0;
+    padding: 0;
+    outline: 0;
+    width: 100%;
+    height: 120px;
+    font-size: 18px;
+    resize: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    @apply border bg-gray-100 p-6 pr-[74px]  relative
+}
+
+textarea::-webkit-scrollbar {
+    display: none;
+}
+.send{
+    @apply absolute right-0 top-[48px] border-0 bg-transparent mr-6 p-0
+}
