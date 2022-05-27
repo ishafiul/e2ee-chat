@@ -4,9 +4,4 @@ export class CreateAuthDto {
   @IsNotEmpty()
   @IsEmail()
   email: string;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  shafi?: string;
 }

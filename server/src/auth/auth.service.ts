@@ -1,11 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { AuthDocument, AuthModel } from '../schema/auth.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class AuthService {
+  constructor(
+    @InjectModel(AuthModel.name)
+    private readonly AuthModel: Model<AuthDocument>,
+  ) {}
   create(createAuthDto: CreateAuthDto) {
-    return createAuthDto;
+    this.AuthModel.create({
+      email: createAuthDto.email,
+    });
+    return 'saved';
   }
 
   findAll() {
