@@ -19,9 +19,18 @@ export class AuthController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  create(@Body() createAuthDto: CreateAuthDto) {
+  signUp(@Body() createAuthDto: CreateAuthDto) {
     return this.authService.create(createAuthDto);
   }
+  @Post()
+  @UsePipes(ValidationPipe)
+  logIn(@Body() createAuthDto: CreateAuthDto) {}
+
+  @Post()
+  logOut(@Body() createAuthDto: CreateAuthDto) {}
+
+  @Post()
+  refreshToken(@Body() createAuthDto: CreateAuthDto) {}
 
   @Get()
   findAll() {

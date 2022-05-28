@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { AuthModel } from '../schema/auth.schema';
+import { AuthModel } from '../schema/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 
 const MongooseModels = MongooseModule.forFeature([AuthModel]);

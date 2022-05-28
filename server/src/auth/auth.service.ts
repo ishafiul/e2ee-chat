@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { AuthDocument, AuthModel } from '../schema/auth.schema';
+import { AuthDocument, AuthModel } from '../schema/user.schema';
 import { Model } from 'mongoose';
 
 @Injectable()
@@ -11,11 +11,24 @@ export class AuthService {
     @InjectModel(AuthModel.name)
     private readonly AuthModel: Model<AuthDocument>,
   ) {}
-  create(createAuthDto: CreateAuthDto) {
-    this.AuthModel.create({
+  async create(createAuthDto: CreateAuthDto) {
+    const duplicateUser = await this.AuthModel.findOne({
       email: createAuthDto.email,
-    });
-    return 'saved';
+    }).exec();
+    if (duplicateUser) {
+      console.log(duplicateUser);
+      throw new HttpException(
+        {
+          statusCode: HttpStatus.FORBIDDEN,
+          message: 'User With This Email Already Exist!',
+        },
+        HttpStatus.FORBIDDEN,
+      );
+    } else {
+      await this.AuthModel.create({
+        email: createAuthDto.email,
+      });
+    }
   }
 
   findAll() {
